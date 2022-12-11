@@ -1,6 +1,13 @@
 package model.crops;
 
+/**
+ * The Carrot class is a subclass of the Crop class. It represents a carrot crop.
+ */
 public class Carrot extends Crop {
+
+    /**
+     * Instantiates a new Carrot.
+     */
     public Carrot() {
         this.name = "Carrot";
         this.cost = 10.0;

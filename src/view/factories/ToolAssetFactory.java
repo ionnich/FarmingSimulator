@@ -8,7 +8,16 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.Buffer;
 
+/**
+ * The ToolAssetFactory class is used to assign tool assets for the game.
+ */
 public class ToolAssetFactory implements AssetFactory<ToolModel, ImageIcon> {
+
+    /**
+     * Fetches the location of the tool asset.
+     * @param tool the tool assigned to the asset
+     * @return the asset
+     */
     @Override
     public ImageIcon fetch(ToolModel tool) {
         BufferedImage src = null;

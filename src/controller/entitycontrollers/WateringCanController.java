@@ -5,7 +5,14 @@ import model.tiles.Tile;
 import model.tools.ToolModel;
 import model.tools.WateringCan;
 
+/**
+ * The WateringCanController class is the controller of the WateringCan tool.
+ */
 public class WateringCanController extends ToolController {
+
+    /**
+     * Instantiates a new WateringCanController.
+     */
     public WateringCanController() {
         super(new WateringCan());
     }
@@ -15,8 +22,14 @@ public class WateringCanController extends ToolController {
         return tile;
     }
 
+    /**
+     * Uses the watering can on a given tile
+     *
+     * @param tile       the tile to be watered
+     * @param waterBonus the water bonus of the farmer
+     * @return the watered tile
+     */
     public Tile waterTile(Tile tile, int waterBonus) {
-
 
         System.out.println("watering the tile");
 
@@ -30,8 +43,6 @@ public class WateringCanController extends ToolController {
         }
 
         // water the crop
-
         return tile;
-
     }
 }

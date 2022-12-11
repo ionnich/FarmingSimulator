@@ -5,16 +5,27 @@ import model.tiles.RockyTile;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ *  The FarmerKeyListener class is responsible for listening to key events related to the Farmer.
+ */
 public class FarmerKeyListener {
-
     FarmerViewController fvc;
     FarmlandController flc;
 
+    /**
+     * Instantiates a new Farmer key listener.
+     *
+     * @param fvc the fvc
+     * @param flc the flc
+     */
     public FarmerKeyListener(FarmerViewController fvc, FarmlandController flc){
         this.fvc = fvc;
         this.flc = flc;
     }
 
+    /**
+     * Move farmer right.
+     */
     public void moveFarmerRight(){
 
         System.out.println("Farmer move right invoked");
@@ -32,6 +43,9 @@ public class FarmerKeyListener {
 
     }
 
+    /**
+     * Move farmer left.
+     */
     public void moveFarmerLeft() {
 
         System.out.println("current tile on invoke");
@@ -50,6 +64,9 @@ public class FarmerKeyListener {
         );
     }
 
+    /**
+     * Move farmer up.
+     */
     public void moveFarmerUp() {
 
         System.out.println("Farmer move down invoked");
@@ -67,6 +84,9 @@ public class FarmerKeyListener {
 
     }
 
+    /**
+     * Move farmer down.
+     */
     public void moveFarmerDown() {
 
         System.out.println("Farmer move up invoked");

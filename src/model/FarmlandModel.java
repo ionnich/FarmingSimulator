@@ -151,10 +151,10 @@ public class FarmlandModel {
     }
 
     /**
-     * Gets the adjacent tiles of a given tile.
+     * Gets the tiles adjacent to a given tile.
      *
      * @param currentTile the current tile
-     * @return the array that holds all adjacent tiles
+     * @return the tile array that holds all adjacent tiles
      */
     public Tile[] getAdjacentTiles(Tile currentTile) {
         Tile[] adjacentTiles = new Tile[4];
@@ -176,10 +176,10 @@ public class FarmlandModel {
     }
 
     /**
-     * Gets the diagonal tiles of a given tile.
+     * Gets the tiles diagonal to a given tile.
      *
      * @param currentTile the current tile
-     * @return the array that holds all diagonal tiles
+     * @return the tile array that holds all diagonal tiles
      */
     public Tile[] getDiagonalTiles(Tile currentTile) {
         Tile[] diagonalTiles = new Tile[4];

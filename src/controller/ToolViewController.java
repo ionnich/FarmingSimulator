@@ -12,6 +12,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 
+/**
+ * The ToolViewController class is responsible for interactions between the ToolView and the ToolController.
+ */
 public class ToolViewController {
 
     private ToolController activeTool;
@@ -19,6 +22,9 @@ public class ToolViewController {
     private HashMap<String, ToolController> toolControllerMap;
 
 
+    /**
+     * Instantiates a new ToolViewController.
+     */
     public ToolViewController(){
 
         this.activeTool = null;
@@ -30,6 +36,9 @@ public class ToolViewController {
         initializeClickEvents();
     }
 
+    /**
+     * Initializes all the tools.
+     */
     public void initializeTools(){
 
         toolControllerMap.put("shovel", new ShovelController());
@@ -39,6 +48,11 @@ public class ToolViewController {
         toolControllerMap.put("fertilizer", new FertilizerController());
     }
 
+    /**
+     * Initialize the tool view container JPanel.
+     *
+     * @return the JPanel
+     */
     public JPanel initializeToolViewContainer(){
 
         this.toolViewContainer.setLayout(new GridLayout(1, 1, 10,0));
@@ -50,6 +64,9 @@ public class ToolViewController {
         return toolViewContainer;
     }
 
+    /**
+     * Initializes the click events.
+     */
     public void initializeClickEvents(){
             // for each tool in the toolControllerMap, set equipTool as the click event
             for (String toolName : toolControllerMap.keySet()) {
@@ -59,7 +76,13 @@ public class ToolViewController {
     }
 
 
-    // on click event that changes the active tool
+    /**
+     * Changes the active tool to the tool with the given name.
+     *
+     * @param toolName the tool name
+     * @return the report that contains the result of the action
+     */
+// on click event that changes the active tool
     public Report equipTool(String toolName){
 
         // check if tool is in the toolControllerMap
@@ -81,14 +104,31 @@ public class ToolViewController {
         return new Report ("Equipped " + toolName, true);
     }
 
+    /**
+     * Adds to the anchor.
+     *
+     * @param anchor the anchor
+     */
     public void addToAnchor(JFrame anchor){
         anchor.add(toolViewContainer);
     }
 
+    /**
+     * Removes from the anchor.
+     *
+     * @param anchor the anchor
+     */
     public void removeFromAnchor(JFrame anchor){
         anchor.remove(toolViewContainer);
     }
 
+    /**
+     * Uses a tool on a tile.
+     *
+     * @param tile        the tile
+     * @param farmerModel the farmer model
+     * @return the resulting tile
+     */
     public Tile useTool(Tile tile, FarmerModel farmerModel){
 
         if(activeTool instanceof WateringCanController){
@@ -102,14 +142,31 @@ public class ToolViewController {
         return activeTool.useTool(tile);
     }
 
+    /**
+     * Gets the view of the active tool.
+     *
+     * @return the tool view
+     */
     public ToolView getActiveToolView(){
         return activeTool.getToolView();
     }
 
+    /**
+     * Gets the model of the active tool.
+     *
+     * @return the tool model
+     */
     public ToolModel getActiveToolModel(){
         return activeTool.getToolModel();
     }
 
+    /**
+     * Tracks whether the attempt to use a tool is successful.
+     *
+     * @param tile          the tile where the tool will be used
+     * @param farmerBalance the farmer balance
+     * @return the report that contains the result of the action
+     */
     public Report attemptToolUse(Tile tile, double farmerBalance){
 
         // guard class
@@ -152,6 +209,11 @@ public class ToolViewController {
         return new Report("Attempt success, proceed", true);
     }
 
+    /**
+     * Gets the controller of the active tool.
+     *
+     * @return the tool controller of the active tool
+     */
     public ToolController getActiveTool(){
         return activeTool;
     }

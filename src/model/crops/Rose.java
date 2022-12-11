@@ -1,6 +1,13 @@
 package model.crops;
 
+/**
+ * The Rose class is a subclass of the Crop class. It represents a rose crop.
+ */
 public class Rose extends Crop{
+
+    /**
+     * Instantiates a new Rose.
+     */
     public Rose() {
         this.name = "Rose";
         this.cost = 5.0;

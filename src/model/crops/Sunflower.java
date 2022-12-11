@@ -1,6 +1,13 @@
 package model.crops;
 
+/**
+ * The Sunflower class is a subclass of the Crop class. It represents a sunflower crop.
+ */
 public class Sunflower extends Crop{
+
+    /**
+     * Instantiates a new Sunflower.
+     */
     public Sunflower() {
         this.name = "Sunflower";
         this.cost = 20.0;

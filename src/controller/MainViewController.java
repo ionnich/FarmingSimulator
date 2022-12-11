@@ -18,8 +18,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
+/**
+ * The MainViewController class is the controller of the MainView class.
+ */
 public class MainViewController {
-
     private JFrame mainFrame;
     private JLabel mainBackground;
     private JPanel buttonPanel;
@@ -27,16 +29,16 @@ public class MainViewController {
     private JButton discardSeedBtn;
     private JButton useToolBtn;
     private ImageIcon logo;
-
     private Boolean isRunning;
-
     private FarmlandController farmlandController;
     private FarmerViewController farmerViewController;
     private ToolViewController toolViewController;
     private SeedShopController seedShopController;
-
     private FarmerKeyListener farmerListener;
 
+    /**
+     * Instantiates a new MainViewController.
+     */
     public MainViewController() {
 
         this.isRunning = true;
@@ -59,6 +61,9 @@ public class MainViewController {
         initGame();
     }
 
+    /**
+     * Initializes all controllers.
+     */
     public void initializeControllers() {
 
         this.farmlandController = new FarmlandController();
@@ -79,6 +84,9 @@ public class MainViewController {
         this.mainFrame.add(this.buttonPanel);
     }
 
+    /**
+     * Initializes the game.
+     */
     private void initGame() {
         this.farmlandController.updateTileViews();
         this.farmerListener = new FarmerKeyListener(
@@ -91,6 +99,9 @@ public class MainViewController {
         this.mainFrame.setVisible(true);
     }
 
+    /**
+     * Instantiates the buttons.
+     */
     public void instantiateButtons() {
         this.buttonPanel = new JPanel();
         // place panel to the right
@@ -222,6 +233,10 @@ public class MainViewController {
         buttonPanel.add(this.levelupBtn);
     }
 
+    /**
+     * Advances the day of the game.
+     * @return the report which contains the message that will be displayed to the user
+     */
     private Report advanceDay() {
         // update the day counter
         // update the farmland
@@ -254,8 +269,10 @@ public class MainViewController {
         return new Report("You have slept for a day", true);
     }
 
-
-
+    /**
+     * Wrapper method for planting a crop.
+     * @param currentTile the tile that the farmer is currently on
+     */
     private void plantWrapper(Tile currentTile) {
         if (currentTile instanceof PlowedTile) {
             if (this.farmerViewController.getCropFromPockets() != null) {
@@ -332,10 +349,20 @@ public class MainViewController {
         }
     }
 
+    /**
+     * Gets all the tiles in the farmland.
+     *
+     * @return the 2d tile array which holds all tiles in the farmland.
+     */
     public Tile[][] getFarmland(){
         return this.farmlandController.farmlandModel.getTiles();
     }
 
+    /**
+     * Wrapper for using tools.
+     *
+     * @param tile the tile where the farmer is currently on
+     */
     public void useToolWrapper(Tile tile){
 
         Report attempt = this.toolViewController.attemptToolUse(
@@ -361,6 +388,9 @@ public class MainViewController {
         }
     }
 
+    /**
+     * Initializes farmer movement.
+     */
     public void initFarmerMovement(){
 
         this.mainFrame.getRootPane().getActionMap().put("mvRight", new AbstractAction() {

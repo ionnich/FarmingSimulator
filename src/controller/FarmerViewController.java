@@ -10,6 +10,9 @@ import view.TileView;
 
 import javax.swing.*;
 
+/**
+ * The FarmerViewController class is responsible for handling the interactions between the farmer view and the farmer model.
+ */
 public class FarmerViewController {
 
     private FarmerView farmerView;
@@ -17,13 +20,16 @@ public class FarmerViewController {
     private Tile currentTile;
     private TileView currentTileView;
     private Crop pockets = null;
-
     private JPanel pocketView;
-
     private JLabel dayCounter;
-
     private int day;
 
+    /**
+     * Instantiates a new FarmerViewController.
+     *
+     * @param startingTileView the starting tile view
+     * @param startingTile     the starting tile
+     */
     public FarmerViewController(TileView startingTileView, Tile startingTile) {
         day = 0;
         this.farmerModel = new FarmerModel();
@@ -39,7 +45,12 @@ public class FarmerViewController {
         this.dayCounter = new JLabel("Day: " + day);
     }
 
-    // TODO: Rework to support multiple seeds
+    /**
+     * Gets the farmer inventory.
+     *
+     * @return the inventory
+     */
+// TODO: Rework to support multiple seeds
     public Crop getInventory() {
 
         if(pockets == null) {
@@ -51,6 +62,9 @@ public class FarmerViewController {
         return pockets;
     }
 
+    /**
+     * Updates the inventory view.
+     */
     public void updateInventoryView(){
         this.pocketView.removeAll();
         this.pocketView.add(new JLabel("Pockets: "));
@@ -65,18 +79,39 @@ public class FarmerViewController {
         this.pocketView.repaint();
     }
 
+    /**
+     * Gets the current tile.
+     *
+     * @return the current tile
+     */
     public Tile getCurrentTile() {
         return currentTile;
     }
 
+    /**
+     * Adds crop to pockets.
+     *
+     * @param crop the crop to be added to the farmer's pockets
+     */
     public void addCropToPockets(Crop crop) {
         this.pockets = crop;
     }
 
+    /**
+     * Gets crop from pockets.
+     *
+     * @return the crop to be taken from the farmer's pockets
+     */
     public Crop getCropFromPockets() {
         return pockets;
     }
 
+    /**
+     * Changes the current tile.
+     *
+     * @param nextTile     the next tile
+     * @param nextTileView the next tile view
+     */
     public void changeCurrentTile(Tile nextTile, TileView nextTileView){
         // unset current tile
         this.currentTileView.setHasFarmer(false);
@@ -91,30 +126,65 @@ public class FarmerViewController {
         this.currentTileView = nextTileView;
     }
 
+    /**
+     * Gives exp to the farmer.
+     *
+     * @param exp the exp to be given to the farmer
+     */
     public void giveFarmerExp(double exp){
         this.farmerModel.gainExp(exp);
     }
 
+    /**
+     * Gives money to the farmer.
+     *
+     * @param money the money to be given to the farmer
+     */
     public void giveFarmerMoney(double money){
         this.farmerModel.addMoney(money);
         this.updateFarmerView();
     }
 
+    /**
+     * Reduces the farmer's money given the amount to be subtracted.
+     *
+     * @param money the money
+     */
     public void subtractFarmerMoney(double money){
         this.farmerModel.spendMoney(money);
     }
 
+    /**
+     * Remove from anchor.
+     *
+     * @param mainFrame the main frame
+     */
     public void removeFromAnchor(JFrame mainFrame){
         mainFrame.remove(farmerView.getFarmerPanel());
     }
+
+    /**
+     * Gets the farmer model.
+     *
+     * @return the farmer model
+     */
     public FarmerModel getFarmerModel() {
         return farmerModel;
     }
+
+    /**
+     * Updates the farmer view.
+     */
     public void updateFarmerView() {
         updateInventoryView();
         this.farmerView.updateFarmerView(this.farmerModel);
     }
 
+    /**
+     * Adds the view to the anchor.
+     *
+     * @param mainFrame the main frame
+     */
     public void addToAnchor(JFrame mainFrame) {
         mainFrame.add(this.farmerView.getFarmerPanel());
         this.dayCounter.setBounds(0, 400, 100, 100);
@@ -124,15 +194,30 @@ public class FarmerViewController {
         mainFrame.add(this.dayCounter);
     }
 
+    /**
+     * Sets the current tile.
+     *
+     * @param tile the tile
+     */
     public void setCurrentTile(Tile tile) {
         this.currentTile = tile;
     }
 
+    /**
+     * Empties the pockets of the farmer.
+     */
     public void emptyPockets() {
         this.pockets = null;
         this.updateInventoryView();
         this.updateFarmerView();
     }
+
+    /**
+     * Plants a seed to a given tile.
+     *
+     * @param tile the tile where the seed will be planted on.
+     * @return the tile
+     */
     public Tile plantSeed(Tile tile) {
         if (this.pockets != null) {
             Crop crop = this.getCropFromPockets();
@@ -145,6 +230,9 @@ public class FarmerViewController {
         return tile;
     }
 
+    /**
+     * Makes the farmer sleep to advance to the next day.
+     */
     public void sleepFarmer() {
         day += 1;
         this.dayCounter.setText("Day: " + day);
@@ -153,6 +241,9 @@ public class FarmerViewController {
         this.dayCounter.repaint();
     }
 
+    /**
+     * Levels up the farmer.
+     */
     public void levelUp() {
 
         FarmerGrade next = this.farmerModel.getNextGrade();

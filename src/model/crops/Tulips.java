@@ -1,6 +1,13 @@
 package model.crops;
 
+/**
+ * The Tulips class is a subclass of the Crop class. It represents a tulips crop.
+ */
 public class Tulips extends Crop{
+
+    /**
+     * Instantiates a new Tulips.
+     */
     public Tulips() {
         this.name = "Tulips";
         this.cost = 10.0;

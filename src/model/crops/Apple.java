@@ -1,6 +1,13 @@
 package model.crops;
 
+/**
+ * The Apple class is a subclass of the Crop class. It represents an apple crop.
+ */
 public class Apple extends Crop{
+
+    /**
+     * Instantiates a new Apple.
+     */
     public Apple() {
         this.name = "Apple";
         this.cost = 200.0;

@@ -10,6 +10,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * The TileView class is responsible for displaying the tiles.
+ */
 public class TileView {
 
     private JLayeredPane tileViewContainer;
@@ -19,6 +22,12 @@ public class TileView {
     private int y;
 
     private boolean hasFarmer = false;
+
+    /**
+     * Instantiates a new TileView.
+     *
+     * @param tile the tile
+     */
     public TileView(Tile tile) {
         this.tileViewLabel = new JLabel();
         this.tileViewContainer = new JLayeredPane();
@@ -31,10 +40,20 @@ public class TileView {
         updateView(tile);
     }
 
+    /**
+     * Sets has farmer.
+     *
+     * @param hasFarmer boolean value that tracks if the farmer is on the tile
+     */
     public void setHasFarmer(boolean hasFarmer){
         this.hasFarmer = hasFarmer;
     }
 
+    /**
+     * Updates the view.
+     *
+     * @param tile the tile
+     */
     public void updateView(Tile tile){
 
         if(tile == null){
@@ -85,22 +104,48 @@ public class TileView {
         this.tileViewContainer.repaint();
 
     }
+
+    /**
+     * Gets tile view.
+     *
+     * @return the tile view
+     */
     public JLayeredPane getTileView() {
         return this.tileViewContainer;
     }
 
+    /**
+     * Sets the x-coordinate.
+     *
+     * @param x the x-coordinate
+     */
     public void setX(int x){
         this.x = x;
     }
 
+    /**
+     * Sets the y-coordinate.
+     *
+     * @param y the y-coordinate
+     */
     public void setY(int y){
         this.y = y;
     }
 
+    /**
+     * Gets the x-coordinate.
+     *
+     * @return the x-coordinate
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Gets the y-coordinate.
+     *
+     * @return the y-coordinate
+     */
     public int getY(){
        return y;
     }

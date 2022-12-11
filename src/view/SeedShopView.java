@@ -13,6 +13,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+/**
+ * The SeedShopView class is responsible for displaying the seed shop.
+ */
 public class SeedShopView {
 
     private JFrame seedShopFrame;
@@ -32,6 +35,11 @@ public class SeedShopView {
     private String selectedSeed;
     private double balance;
 
+    /**
+     * Instantiates a new SeedShopView.
+     *
+     * @param farmerBalance the farmer balance
+     */
     public SeedShopView(double farmerBalance) {
         seedShopFrame = new JFrame();
         seedShopFrame.setVisible(false);
@@ -68,6 +76,9 @@ public class SeedShopView {
         actionPanel.setLayout(new GridLayout(3, 1));
     }
 
+    /**
+     * Updates the cart.
+     */
     public void updateCart() {
         if(this.getSelectedSeed() == null) {
             this.shoppingCart.setText("Shopping Cart: ");
@@ -78,6 +89,11 @@ public class SeedShopView {
         }
     }
 
+    /**
+     * Updates the bag.
+     *
+     * @param crop the bought crop
+     */
     public void updateBag(String crop) {
         if(crop == null) {
             this.bag.setText("Pockets: ");
@@ -87,11 +103,21 @@ public class SeedShopView {
         }
     }
 
+    /**
+     * Updates farmer balance.
+     *
+     * @param balance the balance
+     */
     public void updateBalance(double balance) {
         this.balance = balance;
         this.balanceLabel.setText("Balance: " + balance);
     }
 
+    /**
+     * Creates a crop panel.
+     *
+     * @param catalogue the catalogue of seeds
+     */
     public void createCropPanel(ArrayList<String> catalogue) {
 
         for (String crop : catalogue) {
@@ -108,6 +134,12 @@ public class SeedShopView {
         }
     }
 
+    /**
+     * Creates the action panel.
+     *
+     * @param buyListener  the listener for the buy button
+     * @param backListener the listener for the back button
+     */
     public void createActionPanel(
             ActionListener buyListener,
             ActionListener backListener) {
@@ -120,6 +152,10 @@ public class SeedShopView {
         actionPanel.add(buyButton);
         actionPanel.add(backButton);
     };
+
+    /**
+     * Initializes the seed shop.
+     */
     public void initialize() {
         seedShopFrame.setLayout(null);
         seedShopFrame.add(cropPanel);
@@ -127,17 +163,34 @@ public class SeedShopView {
         seedShopFrame.add(actionPanel);
     }
 
+    /**
+     * Displays the seed shop.
+     */
     public void show() {
         seedShopFrame.setVisible(true);
     }
+
+    /**
+     * Hides the seed shop.
+     */
     public void hide() {
         seedShopFrame.setVisible(false);
     }
 
+    /**
+     * Gets the selected seed.
+     *
+     * @return the name of the selected seed
+     */
     public String getSelectedSeed() {
         return this.selectedSeed;
     }
 
+    /**
+     * Sets the selected seed.
+     *
+     * @param seedName the seed name
+     */
     public void setSelectedSeed(String seedName) {
         this.selectedSeed = seedName;
         updateCart();

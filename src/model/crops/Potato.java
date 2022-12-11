@@ -1,6 +1,12 @@
 package model.crops;
 
+/**
+ * The Potato class is a subclass of the Crop class. It represents a potato crop.
+ */
 public class Potato extends Crop{
+    /**
+     * Instantiates a new Potato.
+     */
     public Potato() {
         this.name = "Potato";
         this.cost = 20.0;

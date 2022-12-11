@@ -6,15 +6,25 @@ import model.crops.Crop;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * The SeedShopModel class represents the seed shop of the game. 
+ */
 public class SeedShopModel {
-
-
     private HashMap<String, Crop> catalogue = new HashMap<>();
 
+    /**
+     * Instantiates a new SeedShopModel.
+     */
     public SeedShopModel() {
         this.initializeCatalogue();
     }
 
+    /**
+     * Gets the crop given  a seed.
+     *
+     * @param seedName the seed name
+     * @return the crop
+     */
     public Crop getCrop(String seedName) {
 
         // guard clause
@@ -25,10 +35,20 @@ public class SeedShopModel {
         return catalogue.get(seedName);
     }
 
+    /**
+     * Gets the array list that contains all the seeds.
+     *
+     * @return the catalogue
+     */
     public ArrayList<String> getCatalogue() {
         return new ArrayList<>(this.catalogue.keySet());
     }
 
+    /**
+     * Gets the cheapest seed.
+     *
+     * @return the cheapest seed
+     */
     public double getCheapestSeed() {
         double cheapestSeed = Double.MAX_VALUE;
         for (Crop crop : this.catalogue.values()) {
@@ -39,6 +59,9 @@ public class SeedShopModel {
         return cheapestSeed;
     }
 
+    /**
+     * Initializes the catalogue of the seed shop.
+     */
     private void initializeCatalogue() {
         CropFactory cf = new CropFactory();
         // initialize catalogue

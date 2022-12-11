@@ -1,6 +1,13 @@
 package model.crops;
 
+/**
+ * The Mango class is a subclass of the Crop class. It represents a mango crop.
+ */
 public class Mango extends Crop{
+
+    /**
+     * Instantiates a new Mango.
+     */
     public Mango() {
         this.name = "Mango";
         this.cost = 100.0;

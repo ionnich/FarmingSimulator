@@ -9,11 +9,21 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
+/**
+ * The TileAssetFactory class is used to assign tile assets for the game.
+ */
 public class TileAssetFactory implements AssetFactory<Tile, ImageIcon>{
 
     // get current directory
     private String tileAssetDir = "/resources/graphics/tiles/";
     int unplowedTileCount = 2;
+
+    /**
+     * Fetches the location of the tile asset.
+     *
+     * @param asset the tile assigned to the asset
+     * @return the asset
+     */
     @Override
     public ImageIcon fetch(Tile asset) {
         BufferedImage src = null;
