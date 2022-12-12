@@ -59,24 +59,6 @@ public abstract class Crop {
     }
 
     /**
-     * Gets water minimum.
-     *
-     * @return the water minimum
-     */
-    public int getWaterMinimum() {
-        return waterMinimum;
-    }
-
-    /**
-     * Gets water limit.
-     *
-     * @return the water limit
-     */
-    public int getWaterLimit() {
-        return waterLimit;
-    }
-
-    /**
      * Gets fertilizer level.
      *
      * @return the fertilizer level
@@ -109,8 +91,7 @@ public abstract class Crop {
      * @return the harvest yield
      */
     public int getHarvestYield() {
-        int yield = (int) (Math.random() * (harvestYieldMax - harvestYieldMin + 1) + harvestYieldMin);
-        return yield;
+        return (int) (Math.random() * (harvestYieldMax - harvestYieldMin + 1) + harvestYieldMin);
     }
 
     /**
@@ -120,25 +101,6 @@ public abstract class Crop {
      */
     public double getBasePrice() {
         return basePrice;
-    }
-
-    /**
-     * Set withered.
-     */
-    public void setWithered(){
-        isWithered = true;
-    }
-
-    /**
-     * Check harvest boolean.
-     *
-     * @return the boolean
-     */
-    public boolean checkHarvest(){
-        if (harvestTimer == 0){
-            isHarvestable = true;
-        }
-        return isHarvestable;
     }
 
     /**
@@ -204,18 +166,6 @@ public abstract class Crop {
      */
     public boolean isWatered() {
         if(waterLevel >= waterMinimum)
-            return true;
-        else
-            return false;
-    }
-
-    /**
-     * Tracks whether the crop is fertilized.
-     *
-     * @return the boolean value of whether the crop is fertilized
-     */
-    public boolean isFertilized(){
-        if(fertilizerLevel >= fertilizerMinimum)
             return true;
         else
             return false;

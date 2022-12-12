@@ -5,10 +5,6 @@ import model.tiles.EmptyTile;
 import model.tiles.Tile;
 import model.tiles.WitherTile;
 import model.tools.Shovel;
-import view.factories.ToolAssetFactory;
-
-import javax.swing.*;
-import java.awt.*;
 
 /**
  * The ShovelController class is the controller of the shovel tool.

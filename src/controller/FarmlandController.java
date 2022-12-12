@@ -113,30 +113,12 @@ public class FarmlandController {
     }
 
     /**
-     * Gets the farmland view.
-     *
-     * @return the farmland view
-     */
-    public FarmlandView getFarmlandView() {
-        return farmlandView;
-    }
-
-    /**
      * Adds to the anchor.
      *
      * @param anchor the anchor
      */
     public void addToAnchor(JFrame anchor){
         anchor.add(farmlandView.getFarmlandPanel());
-    }
-
-    /**
-     * Removes from the anchor.
-     *
-     * @param anchor the anchor
-     */
-    public void removeFromAnchor(JFrame anchor){
-        anchor.remove(farmlandView.getFarmlandPanel());
     }
 
     /**

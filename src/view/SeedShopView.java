@@ -1,16 +1,12 @@
 package view;
 
 import controller.factories.CropFactory;
-import model.SeedShopModel;
-import model.crops.Crop;
-import view.factories.CropAssetFactory;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 /**
@@ -29,11 +25,7 @@ public class SeedShopView {
 
     private JLabel bag;
 
-    private JButton buyButton;
-    private JButton backButton;
-
     private String selectedSeed;
-    private double balance;
 
     /**
      * Instantiates a new SeedShopView.
@@ -109,7 +101,6 @@ public class SeedShopView {
      * @param balance the balance
      */
     public void updateBalance(double balance) {
-        this.balance = balance;
         this.balanceLabel.setText("Balance: " + balance);
 
         this.balanceLabel.revalidate();
@@ -146,12 +137,12 @@ public class SeedShopView {
     public void createActionPanel(
             ActionListener buyListener,
             ActionListener backListener) {
-        buyButton = new JButton("Buy");
+        JButton buyButton = new JButton("Buy");
         buyButton.setSize(50, 50);
         buyButton.setOpaque(false);
 
 
-        backButton = new JButton("Back");
+        JButton backButton = new JButton("Back");
         backButton.setSize(50, 50);
         backButton.setOpaque(false);
 
@@ -160,7 +151,7 @@ public class SeedShopView {
 
         actionPanel.add(buyButton);
         actionPanel.add(backButton);
-    };
+    }
 
     /**
      * Initializes the seed shop.

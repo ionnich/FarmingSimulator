@@ -1,6 +1,5 @@
 package controller;
 
-import controller.entitycontrollers.ToolController;
 import model.FarmerModel;
 import model.crops.Crop;
 import model.grades.FarmerGrade;
@@ -57,8 +56,6 @@ public class FarmerViewController {
             return null;
         }
         // get crops from pockets
-//        ArrayList<String> crops = new ArrayList<>();
-//        crops.add(pockets.getName());
         return pockets;
     }
 
@@ -69,9 +66,6 @@ public class FarmerViewController {
         this.pocketView.removeAll();
         this.pocketView.add(new JLabel("Pockets: "));
         // TODO: Rework to support multiple crops
-//        for (String crop : this.getInventory()) {
-//            this.pocketView.add(new JLabel(crop));
-//        }
         if(this.getInventory() != null) {
             this.pocketView.add(new JLabel(this.getInventory().getName()));
         }
@@ -152,15 +146,6 @@ public class FarmerViewController {
      */
     public void subtractFarmerMoney(double money){
         this.farmerModel.spendMoney(money);
-    }
-
-    /**
-     * Remove from anchor.
-     *
-     * @param mainFrame the main frame
-     */
-    public void removeFromAnchor(JFrame mainFrame){
-        mainFrame.remove(farmerView.getFarmerPanel());
     }
 
     /**

@@ -3,7 +3,6 @@ package controller.entitycontrollers;
 import model.tiles.PlowedTile;
 import model.tiles.Tile;
 import model.tools.Plow;
-import model.tools.ToolModel;
 
 /**
  * The PlowController class is the controller of the Plow tool.

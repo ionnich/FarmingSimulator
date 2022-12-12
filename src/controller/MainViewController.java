@@ -1,14 +1,9 @@
 package controller;
 
-import controller.entitycontrollers.ToolController;
-import model.FarmlandModel;
 import model.Report;
 import model.crops.Crop;
 import model.tiles.*;
-import view.FarmlandView;
 import view.MainView;
-import view.SeedShopView;
-import view.TileView;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -24,13 +19,7 @@ import java.io.IOException;
  */
 public class MainViewController {
     private JFrame mainFrame;
-    private JLabel mainBackground;
     private JPanel buttonPanel;
-    private JButton sleepBtn, plantBtn, levelupBtn, storeBtn, harvestBtn;
-    private JButton discardSeedBtn;
-    private JButton useToolBtn;
-    private ImageIcon logo;
-    private Boolean isRunning;
     private FarmlandController farmlandController;
     private FarmerViewController farmerViewController;
     private ToolViewController toolViewController;
@@ -42,13 +31,13 @@ public class MainViewController {
      */
     public MainViewController() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 
-        this.isRunning = true;
+        Boolean isRunning = true;
         MainView mainView = new MainView();
         this.mainFrame = mainView.getMainFrame();
 
         initializeControllers();
 
-        this.mainBackground = new JLabel();
+        JLabel mainBackground = new JLabel();
         // initialize the background
         ImageIcon backgroundIcon = new ImageIcon("resources/Grass.png");
         Image src = backgroundIcon.getImage();
@@ -56,8 +45,8 @@ public class MainViewController {
                 src.getScaledInstance(1280, 800, Image.SCALE_SMOOTH));
 
         // set the background
-        this.mainBackground.setIcon(backgroundIcon);
-        this.mainBackground.setBounds(0, 0, 1280, 800);
+        mainBackground.setIcon(backgroundIcon);
+        mainBackground.setBounds(0, 0, 1280, 800);
 
 
         initGame();
@@ -68,12 +57,10 @@ public class MainViewController {
         AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("src/resources/sounds/bgmusic.wav"));
         clip.open(inputStream);
         clip.loop(Clip.LOOP_CONTINUOUSLY);
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                // A GUI element to prevent the Clip's daemon Thread
-                // from terminating at the end of the main()
-                JOptionPane.showMessageDialog(null, "Close to exit the music <3");
-            }
+        SwingUtilities.invokeLater(() -> {
+            // A GUI element to prevent the Clip's daemon Thread
+            // from terminating at the end of the main()
+            JOptionPane.showMessageDialog(null, "Close to exit the music <3");
         });
     }
     /**
@@ -124,45 +111,45 @@ public class MainViewController {
         buttonPanel.setLayout(new GridLayout(8, 1));
         buttonPanel.setOpaque(false);
 
-        this.useToolBtn = new JButton("Use Tool");
-        this.useToolBtn.setSize(100, 50);
-        this.useToolBtn.addActionListener(e -> {
+        JButton useToolBtn = new JButton("Use Tool");
+        useToolBtn.setSize(100, 50);
+        useToolBtn.addActionListener(e -> {
             System.out.println("Tool use invoked");
             useToolWrapper(
                     this.farmerViewController.getCurrentTile()
             );
         });
-        buttonPanel.add(this.useToolBtn);
+        buttonPanel.add(useToolBtn);
 
-        this.storeBtn = new JButton("Store");
-        this.useToolBtn.setSize(100, 50);
-        this.storeBtn.addActionListener(e -> {
+        JButton storeBtn = new JButton("Store");
+        useToolBtn.setSize(100, 50);
+        storeBtn.addActionListener(e -> {
             System.out.println("Store button clicked");
             this.seedShopController.showSeedShop();
         });
-        buttonPanel.add(this.storeBtn);
+        buttonPanel.add(storeBtn);
 
-        this.plantBtn = new JButton("Plant");
-        this.plantBtn.setSize(100, 50);
-        this.plantBtn.addActionListener(e -> {
+        JButton plantBtn = new JButton("Plant");
+        plantBtn.setSize(100, 50);
+        plantBtn.addActionListener(e -> {
             System.out.println("Plant button clicked");
             this.plantWrapper(
                     this.farmerViewController.getCurrentTile()
             );
         });
-        buttonPanel.add(this.plantBtn);
+        buttonPanel.add(plantBtn);
 
-        this.discardSeedBtn = new JButton("Discard Seed");
-        this.discardSeedBtn.setSize(100, 50);
-        this.discardSeedBtn.addActionListener(e -> {
+        JButton discardSeedBtn = new JButton("Discard Seed");
+        discardSeedBtn.setSize(100, 50);
+        discardSeedBtn.addActionListener(e -> {
             System.out.println("Discard Seed button clicked");
             farmerViewController.emptyPockets();
         });
-        buttonPanel.add(this.discardSeedBtn);
+        buttonPanel.add(discardSeedBtn);
 
-        this.sleepBtn = new JButton("Sleep");
-        this.sleepBtn.setSize(100, 50);
-        this.sleepBtn.addActionListener(e -> {
+        JButton sleepBtn = new JButton("Sleep");
+        sleepBtn.setSize(100, 50);
+        sleepBtn.addActionListener(e -> {
             System.out.println("Sleep button clicked");
             Report dayReport = this.advanceDay();
 
@@ -176,8 +163,8 @@ public class MainViewController {
 
             if(!dayReport.isSuccess()){
 
-                AudioInputStream failureStream = null;
-                Clip failureClip = null;
+                AudioInputStream failureStream;
+                Clip failureClip;
 
                 try {
                     failureStream = AudioSystem.getAudioInputStream(new File("src/resources/sounds/youfailed.wav"));
@@ -188,13 +175,11 @@ public class MainViewController {
                 }
 
                 failureClip.loop(Clip.LOOP_CONTINUOUSLY);
-                SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        // A GUI element to prevent the Clip's daemon Thread
-                        // from terminating at the end of the main()
-                        JOptionPane.showMessageDialog(null, "Don't close this, please be sad </3");
-                        System.out.println("You failed music playing");
-                    }
+                SwingUtilities.invokeLater(() -> {
+                    // A GUI element to prevent the Clip's daemon Thread
+                    // from terminating at the end of the main()
+                    JOptionPane.showMessageDialog(null, "Don't close this, please be sad </3");
+                    System.out.println("You failed music playing");
                 });
 
 
@@ -211,18 +196,16 @@ public class MainViewController {
             }
 
         });
-        buttonPanel.add(this.sleepBtn);
+        buttonPanel.add(sleepBtn);
 
-        this.harvestBtn = new JButton("Harvest");
-        this.harvestBtn.setSize(100, 50);
-        this.harvestBtn.addActionListener(e -> {
+        JButton harvestBtn = new JButton("Harvest");
+        harvestBtn.setSize(100, 50);
+        harvestBtn.addActionListener(e -> {
             System.out.println("Harvest button clicked");
             // check if the farmer is on a tile with a crop
             Tile currentTile = this.farmerViewController.getCurrentTile();
-            if (currentTile instanceof CropTile) {
+            if (currentTile instanceof CropTile pendingHarvest) {
                 // check if the crop is ready to harvest
-
-                CropTile pendingHarvest = (CropTile) currentTile;
 
                 if (((CropTile) currentTile).getCrop().isHarvestable()) {
 
@@ -265,15 +248,15 @@ public class MainViewController {
                 }
             }
         });
-        buttonPanel.add(this.harvestBtn);
+        buttonPanel.add(harvestBtn);
 
-        this.levelupBtn = new JButton("Level Up");
-        this.levelupBtn.setSize(100, 50);
-        this.levelupBtn.addActionListener(e -> {
+        JButton levelupBtn = new JButton("Level Up");
+        levelupBtn.setSize(100, 50);
+        levelupBtn.addActionListener(e -> {
             System.out.println("Level Up button clicked");
             this.farmerViewController.levelUp();
         });
-        buttonPanel.add(this.levelupBtn);
+        buttonPanel.add(levelupBtn);
     }
 
     /**
@@ -323,7 +306,6 @@ public class MainViewController {
                 // check if the crop is a tree
                 Crop crop = this.farmerViewController.getCropFromPockets();
                 if(crop.getType().contains("Fruit Tree")){
-                    // perform checks
                     // check if the tile is adjacent to the edge
                     if(currentTile.getX() == 0 || currentTile.getX() >= 9 || currentTile.getY() == 0 || currentTile.getY() >= 4){
                         JOptionPane.showMessageDialog(

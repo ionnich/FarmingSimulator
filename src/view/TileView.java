@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * The TileView class is responsible for displaying the tiles.
@@ -21,7 +20,7 @@ public class TileView {
     private int x;
     private int y;
 
-    private boolean hasFarmer = false;
+    private boolean hasFarmer;
 
     /**
      * Instantiates a new TileView.
@@ -75,7 +74,7 @@ public class TileView {
 
         if(this.hasFarmer){
 
-            BufferedImage src = null;
+            BufferedImage src;
             try {
                 String farmerAssetDir = "/resources/graphics/farmer/farmerbase.png";
                 src = ImageIO.read(getClass().getResource(farmerAssetDir));

@@ -17,9 +17,13 @@ public class FertilizerController extends ToolController {
         super(new Fertilizer());
     }
 
+    /**
+     * Uses the Fertilizer tool on the specified tile.
+     * @param tile the tile to use the tool on
+     * @return the mutated tile
+     */
     @Override
     public Tile useTool(Tile tile) {
-        // do nothing
         return tile;
     }
 

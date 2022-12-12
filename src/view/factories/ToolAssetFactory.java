@@ -6,7 +6,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.nio.Buffer;
 
 /**
  * The ToolAssetFactory class is used to assign tool assets for the game.
@@ -20,7 +19,7 @@ public class ToolAssetFactory implements AssetFactory<ToolModel, ImageIcon> {
      */
     @Override
     public ImageIcon fetch(ToolModel tool) {
-        BufferedImage src = null;
+        BufferedImage src;
 
         try {
             String toolAssetDir = "/resources/graphics/tools/";

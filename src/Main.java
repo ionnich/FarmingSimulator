@@ -18,5 +18,9 @@ public class Main {
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         System.out.println("Hello world!");
         MainViewController mvc = new MainViewController();
+
+        System.out.println(
+                "Thank you for playing"
+        );
     }
 }

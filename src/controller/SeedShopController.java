@@ -5,7 +5,6 @@ import model.SeedShopModel;
 import model.crops.Crop;
 import view.SeedShopView;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -78,7 +77,7 @@ public class SeedShopController {
                 System.out.println("You already have a seed in your pocket");
                 return;
             }
-            fvc.getFarmerModel().spendMoney(crop.getCost());
+            fvc.getFarmerModel().spendMoney(crop.getCost() - fvc.getFarmerModel().seedDiscount());
             seedShopView.updateBalance(fvc.getFarmerModel().getBalance());
             seedShopView.updateBag(seedName);
 

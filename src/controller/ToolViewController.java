@@ -113,15 +113,6 @@ public class ToolViewController {
     }
 
     /**
-     * Removes from the anchor.
-     *
-     * @param anchor the anchor
-     */
-    public void removeFromAnchor(JFrame anchor){
-        anchor.remove(toolViewContainer);
-    }
-
-    /**
      * Uses a tool on a tile.
      *
      * @param tile        the tile
@@ -139,15 +130,6 @@ public class ToolViewController {
         }
 
         return activeTool.useTool(tile);
-    }
-
-    /**
-     * Gets the view of the active tool.
-     *
-     * @return the tool view
-     */
-    public ToolView getActiveToolView(){
-        return activeTool.getToolView();
     }
 
     /**
@@ -225,15 +207,6 @@ public class ToolViewController {
         // do not check the shovel as it can be used on any tile
         return new Report("Attempt success, proceed", true);
 
-    }
-
-    /**
-     * Gets the controller of the active tool.
-     *
-     * @return the tool controller of the active tool
-     */
-    public ToolController getActiveTool(){
-        return activeTool;
     }
 
 }

@@ -2,7 +2,6 @@ package controller.entitycontrollers;
 
 import model.tiles.CropTile;
 import model.tiles.Tile;
-import model.tools.ToolModel;
 import model.tools.WateringCan;
 
 /**

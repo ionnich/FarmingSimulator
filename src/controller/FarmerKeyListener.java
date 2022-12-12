@@ -1,10 +1,5 @@
 package controller;
 
-import model.tiles.RockyTile;
-
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 /**
  *  The FarmerKeyListener class is responsible for listening to key events related to the Farmer.
  */

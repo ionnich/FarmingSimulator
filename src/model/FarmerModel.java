@@ -156,10 +156,4 @@ public class FarmerModel {
         return exp;
     }
 
-    /**
-     * Levels up the farmer.
-     */
-    public void levelUp() {
-        this.grade = grade.nextGrade();
-    }
 }

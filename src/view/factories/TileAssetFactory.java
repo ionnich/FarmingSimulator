@@ -1,6 +1,5 @@
 package view.factories;
 
-import model.crops.Crop;
 import model.tiles.*;
 
 import javax.imageio.ImageIO;
@@ -26,7 +25,7 @@ public class TileAssetFactory implements AssetFactory<Tile, ImageIcon>{
      */
     @Override
     public ImageIcon fetch(Tile asset) {
-        BufferedImage src = null;
+        BufferedImage src;
         Random randomizer = new Random();
 
         if (asset instanceof EmptyTile) {

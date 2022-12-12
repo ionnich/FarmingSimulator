@@ -25,7 +25,7 @@ public class FarmlandModel {
         tiles = new Tile[width][height];
 
         File tileFile = new File("src/tilefile.txt");
-        FileReader fileReader = null;
+        FileReader fileReader;
         try {
             fileReader = new FileReader(tileFile);
         } catch (FileNotFoundException e) {
@@ -44,14 +44,14 @@ public class FarmlandModel {
             throw new RuntimeException(e);
         }
 
-        Stack<Character> stack = new Stack();
+        Stack<Character> stack = new Stack<>();
         // for character in the tile file
         for (char c: tileStr.toCharArray()) {
             stack.push(c);
         }
 
 
-        char cFlag = ' ';
+        char cFlag;
         // instantiate all tiles
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {

@@ -5,7 +5,6 @@ import model.tiles.Tile;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * The FarmlandView class is responsible for displaying the farmland.
@@ -107,12 +106,4 @@ public class FarmlandView {
         return this.farmlandPanel;
     }
 
-    /**
-     * Gets farmland model.
-     *
-     * @return the farmland model
-     */
-    public FarmlandModel getFarmlandModel() {
-        return farmlandModel;
-    }
 }

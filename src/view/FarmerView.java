@@ -10,7 +10,6 @@ import javax.swing.*;
  */
 public class FarmerView {
     JPanel farmerPanel;
-    private int day;
 
     /**
      * Initializes the farmer view.

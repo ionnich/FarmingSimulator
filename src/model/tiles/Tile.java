@@ -13,7 +13,6 @@ public abstract class Tile {
     protected int x;
     protected int y;
     protected boolean isOccupied;
-    protected Crop currentCrop;
     protected Crop activeCrop = null;
 
     /**

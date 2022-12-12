@@ -5,8 +5,6 @@ import view.factories.ToolAssetFactory;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 
 /**
  * The ToolView class is responsible for displaying the tools.

@@ -2,7 +2,6 @@ package controller.factories;
 
 import controller.entitycontrollers.*;
 import model.tools.*;
-import model.tools.ToolModel;
 
 /**
  * The ToolControllerFactory class is a factory class that creates ToolControllers.
