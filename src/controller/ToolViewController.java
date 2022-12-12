@@ -91,7 +91,6 @@ public class ToolViewController {
             return new Report("Tool not found", false);
         }
 
-
         // unset border
         if (activeTool != null){
             activeTool.getToolView().setBorder(null);
@@ -173,40 +172,59 @@ public class ToolViewController {
         if(tile == null)
             return new Report("Tile is null", false);
 
+
         // check if farmer balance is sufficient
         if(farmerBalance < activeTool.getToolModel().getCost())
             return new Report("Insufficient funds", false);
 
-        // check if pickaxe is equipped and tile is a rock
-        if(tile instanceof RockyTile && activeTool instanceof PickaxeController)
-            return new Report("Pickaxe appropriate for tile", true);
 
-        // check if plow is equipped and tile is empty
-        if(tile instanceof EmptyTile && activeTool instanceof PlowController)
-            return new Report("Plow appropriate for tile", true);
+        // checker for pickaxe
+        if(activeTool instanceof PickaxeController){
+            if(!(tile instanceof RockyTile)){
+                return new Report("You can only use the pickaxe on tiles with rocks", false);
+            }
+            else{
+                return new Report("Tile mined", true);
+            }
+        }
 
-        // check if watering can is equipped and tile is a crop tile
-        if(tile instanceof CropTile && activeTool instanceof WateringCanController)
-            return new Report("Watering can appropriate for tile", true);
+        // checker for plow
+        if(activeTool instanceof PlowController){
+            if(!(tile instanceof EmptyTile)){
+                return new Report("You can only use the plow on dirt tiles", false);
+            }
+            else{
+                return new Report("Tile plowed", true);
+            }
+        }
 
-        // check if fertilizer is equipped and tile is a crop tile
-        if(!(tile instanceof CropTile) && activeTool instanceof FertilizerController)
-            return new Report("Fertilizer can only be used on crop tile", false);
+        // checker for fertilizer
+        if(activeTool instanceof FertilizerController){
+            if(!(tile instanceof CropTile)){
+                return new Report("You can only use the fertilizer on plowed tiles", false);
+            }
+            else{
+                return new Report("Tile fertilized", true);
+            }
+        }
 
-        // check if fertilizer is equipped and tile is a crop tile
-        if(!(tile instanceof CropTile) && activeTool instanceof WateringCanController)
-            return new Report("Watering can can only be used on crop tile", false);
+        // checker for wateringCan
+        if(activeTool instanceof WateringCanController){
+            if(!(tile instanceof CropTile)){
+                return new Report("You can only use the watering can on crops", false);
+            }
+            else{
+                return new Report("Tile watered", true);
+            }
+        }
 
-        // check if watering can is equipped and tile is a crop tile
-        if(tile instanceof CropTile && activeTool instanceof WateringCanController)
-            return new Report("Watering can appropriate for tile", true);
-
-        // check if fertilizer is equipped and tile is a crop tile
-        if(tile instanceof CropTile && activeTool instanceof FertilizerController)
-            return new Report("Fertilizer appropriate for tile", true);
+        if(activeTool instanceof ShovelController){
+            return new Report("Tile dug", true);
+        }
 
         // do not check the shovel as it can be used on any tile
         return new Report("Attempt success, proceed", true);
+
     }
 
     /**

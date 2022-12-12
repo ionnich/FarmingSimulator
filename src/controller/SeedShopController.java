@@ -94,6 +94,7 @@ public class SeedShopController {
      */
 // show the seed shop in another window
     public void showSeedShop() {
+        this.seedShopView.updateBalance(fvc.getFarmerModel().getBalance());
         this.seedShopView.show();
     }
 

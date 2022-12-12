@@ -13,8 +13,8 @@ public abstract class Crop {
     protected int fertilizerMinimum;
     protected int fertilizerLevel;
     protected int fertilizerLimit;
-    protected int fertilizerBonus;
     protected double basePrice;
+
     protected double expGain;
     protected int harvestTimer;
     protected int harvestYieldMin;
@@ -83,15 +83,6 @@ public abstract class Crop {
      */
     public int getFertilizerLevel() {
         return fertilizerLevel;
-    }
-
-    /**
-     * Gets fertilizer bonus.
-     *
-     * @return the fertilizer bonus
-     */
-    public int getFertilizerBonus() {
-        return fertilizerBonus;
     }
 
     /**
@@ -228,5 +219,21 @@ public abstract class Crop {
             return true;
         else
             return false;
+    }
+
+    @Override
+    public String toString() {
+
+        String acc = "";
+
+        acc += "Crop: " + name;
+        acc += "\nType: " + type;
+        acc += "\nWater level: " + waterLevel + "/" + waterLimit;
+        acc += "\nFertilizer level: " + fertilizerLevel + "/" + fertilizerLimit;
+        acc += "\nPotential yield: " + harvestYieldMin + " <-> " + harvestYieldMax;
+        acc += "\nHarvest in: " + harvestTimer;
+        acc += "\nBase selling price: " + basePrice;
+
+        return acc;
     }
 }

@@ -67,7 +67,7 @@ public class FarmlandView {
      * @return the tile pane
      */
     public JLayeredPane getTilePane(int x, int y){
-        int coord = x * this.farmlandModel.getHeight() + y;
+        int coord = y * this.farmlandModel.getWidth() + x;
         return (JLayeredPane) this.farmlandPanel.getComponent(coord);
     }
 

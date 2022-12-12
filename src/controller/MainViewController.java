@@ -10,12 +10,13 @@ import view.MainView;
 import view.SeedShopView;
 import view.TileView;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 
 
 /**
@@ -39,7 +40,7 @@ public class MainViewController {
     /**
      * Instantiates a new MainViewController.
      */
-    public MainViewController() {
+    public MainViewController() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 
         this.isRunning = true;
         MainView mainView = new MainView();
@@ -58,9 +59,23 @@ public class MainViewController {
         this.mainBackground.setIcon(backgroundIcon);
         this.mainBackground.setBounds(0, 0, 1280, 800);
 
-        initGame();
-    }
 
+        initGame();
+
+        // initialize music
+        Clip clip = AudioSystem.getClip();
+        // getAudioInputStream() also accepts a File or InputStream
+        AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("src/resources/sounds/bgmusic.wav"));
+        clip.open(inputStream);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                // A GUI element to prevent the Clip's daemon Thread
+                // from terminating at the end of the main()
+                JOptionPane.showMessageDialog(null, "Close to exit the music <3");
+            }
+        });
+    }
     /**
      * Initializes all controllers.
      */
@@ -161,6 +176,28 @@ public class MainViewController {
 
             if(!dayReport.isSuccess()){
 
+                AudioInputStream failureStream = null;
+                Clip failureClip = null;
+
+                try {
+                    failureStream = AudioSystem.getAudioInputStream(new File("src/resources/sounds/youfailed.wav"));
+                    failureClip = AudioSystem.getClip();
+                    failureClip.open(failureStream);
+                } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                failureClip.loop(Clip.LOOP_CONTINUOUSLY);
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        // A GUI element to prevent the Clip's daemon Thread
+                        // from terminating at the end of the main()
+                        JOptionPane.showMessageDialog(null, "Don't close this, please be sad </3");
+                        System.out.println("You failed music playing");
+                    }
+                });
+
+
                 JOptionPane.showMessageDialog(
                         this.mainFrame,
                         "You have lost the game!",
@@ -168,6 +205,7 @@ public class MainViewController {
                         JOptionPane.INFORMATION_MESSAGE
                 );
 
+                // play failure music to make the player sad
                 // end the game
                 System.exit(0);
             }
@@ -198,9 +236,14 @@ public class MainViewController {
                     if (pendingHarvest.getCrop().getType().contains("flower")) {
                         gains *= 1.1;
                     }
-                    // harvest the crop
+
+                    // give farmer money
                     this.farmerViewController.giveFarmerMoney(
                             gains
+                    );
+                    // give farmer exp
+                    this.farmerViewController.giveFarmerExp(
+                            pendingHarvest.getCrop().getExpGain()
                     );
 
                     currentTile = new EmptyTile(currentTile.getX(), currentTile.getY());
@@ -384,8 +427,13 @@ public class MainViewController {
             tile = toolViewController.useTool(tile, farmerViewController.getFarmerModel());
             this.farmlandController.mutateTile(true, tile, tile.getX(), tile.getY());
             this.farmerViewController.setCurrentTile(tile);
-            System.out.println("Tile mutated");
         }
+            JOptionPane.showMessageDialog(
+                    this.mainFrame,
+                    attempt.getStatus(),
+                    "MAILMAN",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
     }
 
     /**

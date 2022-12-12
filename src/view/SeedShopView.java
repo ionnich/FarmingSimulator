@@ -45,7 +45,7 @@ public class SeedShopView {
         seedShopFrame.setVisible(false);
         seedShopFrame.setTitle("Seed Shop");
         seedShopFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        seedShopFrame.setSize(800, 500);
+        seedShopFrame.setSize(800, 800);
         seedShopFrame.setResizable(false);
         seedShopFrame.setLayout(null);
 
@@ -60,8 +60,8 @@ public class SeedShopView {
         bag.setBounds(0, 100, 50, 50);
 
         infoPanel = new JPanel();
-        infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-        infoPanel.setBounds(400, 0, 200, 100);
+        infoPanel.setLayout(new GridLayout(3, 1));
+        infoPanel.setBounds(500, 0, 200, 100);
         infoPanel.add(balanceLabel);
         infoPanel.add(shoppingCart);
         infoPanel.add(bag);
@@ -111,6 +111,9 @@ public class SeedShopView {
     public void updateBalance(double balance) {
         this.balance = balance;
         this.balanceLabel.setText("Balance: " + balance);
+
+        this.balanceLabel.revalidate();
+        this.balanceLabel.repaint();
     }
 
     /**
@@ -144,7 +147,13 @@ public class SeedShopView {
             ActionListener buyListener,
             ActionListener backListener) {
         buyButton = new JButton("Buy");
+        buyButton.setSize(50, 50);
+        buyButton.setOpaque(false);
+
+
         backButton = new JButton("Back");
+        backButton.setSize(50, 50);
+        backButton.setOpaque(false);
 
         buyButton.addActionListener(buyListener);
         backButton.addActionListener(backListener);

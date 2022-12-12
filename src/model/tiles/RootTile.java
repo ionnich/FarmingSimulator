@@ -51,4 +51,10 @@ public class RootTile extends Tile {
         return this.dissolveTimer;
     }
 
+
+    @Override
+    public String toString(){
+        return "This tile is overran by roots!";
+    }
+
 }

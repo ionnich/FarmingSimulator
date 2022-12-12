@@ -22,4 +22,9 @@ public class EmptyTile extends Tile{
         this.x = x;
         this.y = y;
     }
+
+    @Override
+    public String toString(){
+        return "Empty tile";
+    }
 }

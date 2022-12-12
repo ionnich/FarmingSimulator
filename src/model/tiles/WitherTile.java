@@ -21,4 +21,9 @@ public class WitherTile extends Tile{
         this.x = x;
         this.y = y;
     }
+
+    @Override
+    public String toString(){
+        return "This tile has a withered crop :(";
+    }
 }

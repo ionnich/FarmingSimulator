@@ -22,13 +22,11 @@ public abstract class Tile {
     @Override
     public String toString() {
         String acc = "";
-        if(activeCrop != null){
-            acc += this.activeCrop.toString();
-        }
-        acc += "\nPlowed: " + this.isPlowed ;
-        acc += "\nWatered: " + this.isWatered;
-        acc += "\nWithered: " + this.hasWithered;
-        acc += "\nHas Rocks: " + this.hasRocks;
+            acc += "\nPlowed: " + this.isPlowed ;
+            acc += "\nWatered: " + this.isWatered;
+            acc += "\nWithered: " + this.hasWithered;
+            acc += "\nHas Rocks: " + this.hasRocks;
+            acc += "\nOccupied: " + this.isOccupied;
 
         return acc;
     }

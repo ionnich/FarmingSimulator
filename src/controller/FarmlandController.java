@@ -89,10 +89,23 @@ public class FarmlandController {
     public void addTileEvents(){
         for (int i = 0; i < this.farmlandModel.getWidth(); i++) {
             for (int j = 0; j < this.farmlandModel.getHeight(); j++) {
+                int finalJ = j;
+                int finalI = i;
                 this.farmlandView.getTilePane(i, j).addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        System.out.println("clicked");
+                        String tileInfo = farmlandModel.getTile(finalI, finalJ).toString();
+
+                        if(tileInfo.contains("rock")){
+                            // set JOption Logo
+                            ImageIcon rockIcon = new ImageIcon("src/resources/graphics/tiles/rocks2.png");
+                            // set information message
+                            JOptionPane.showMessageDialog(null, tileInfo, "Dwayne", JOptionPane.INFORMATION_MESSAGE, rockIcon);
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, tileInfo);
+                        }
+
                     }
                 });
             }

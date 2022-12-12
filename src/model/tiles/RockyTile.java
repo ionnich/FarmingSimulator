@@ -21,4 +21,9 @@ public class RockyTile extends Tile{
         super.x = x;
         super.y = y;
     }
+
+    @Override
+    public String toString(){
+        return "This tile has rocks :(";
+    }
 }
